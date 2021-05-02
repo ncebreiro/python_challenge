@@ -33,7 +33,7 @@ $ python3 main.py
 Some configs are detailed here, at the moment we only have requests timeout and the regex for IPs.
 
 ## lookups
-There is a class called LookupHelper at lookups/lookup_helper.py that holds all the calls to a certain lookup which is defined at a child level (rdap_ip_lookup.py for RDAP and geo_ip_lookup.py for GEO). Multiproccesing is the logic chosen to achieve a faster result when iterating over big chunks of data. A lookup receives a list of IPs and returns the same list with the data added, this is allocated inside a key defined by the attribute lookup_name.
+There is a class called LookupHelper at lookups/lookup_helper.py that holds all the calls to a certain lookup which is defined at a child level (rdap_ip_lookup.py for RDAP and geo_ip_lookup.py for GEO). Multiproccesing is the logic chosen to achieve a faster result when the response of a request is being done. A lookup receives a list of IPs and returns the same list with the data added, this is allocated inside a key defined by the attribute lookup_name.
 
 ## parsing
 In this project we can find a parser at parsers/parser.py which receives a txt path, it will search for ips with the help of a regex, a dictionary with empty values and ips as keys is going to be returned.
