@@ -42,10 +42,14 @@ class LookupHelper(metaclass=ABCMeta):
         self.session = requests.Session()
 
     def get_lookup_response(self):
+        """
+            Initialices process. Will call to lookup services while declaring multiprocessing logic.
+            Returns the list of ips with the lookup object value.
+        """
 
         # uses multriprocessing logic to iterate over ips
         with multiprocessing.Pool() as pool:
-            lookups = pool.map(self.get_lookup, self.list_of_ips.keys())
+            lookups = pool.map(self._get_lookup, self.list_of_ips.keys())
 
             # iterating over process response, will add lookup to self.list_of_ips
             for lookup in lookups:
@@ -55,9 +59,9 @@ class LookupHelper(metaclass=ABCMeta):
 
         return self.list_of_ips
 
-    def get_lookup(self, ip):
+    def _get_lookup(self, ip):
         """
-            multiprocessing logic, per each ip will call to service lookup and return the response formated
+            Multiprocessing logic, per each ip will call to service lookup and return the response formated
         """
         headers = {
             'accept': "application/json",

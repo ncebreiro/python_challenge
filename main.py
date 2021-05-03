@@ -12,12 +12,13 @@ class MainIterator(object):
     def menu(self):
         user_input = None
         while user_input != '4':
-            print('Welcome, what would you like to do?')
-            print('1- Look for collection of IPs inside a txt')
-            print('2- Insert any IP manually')
-            print('3- Print current values')
-            print('4- Exit')
-            print('----------------------------------')
+            print('\n ------------------------------------------')
+            print('|Welcome, what would you like to do?       |')
+            print('|1- Look for collection of IPs inside a txt|')
+            print('|2- Insert any IP manually                 |')
+            print('|3- Print current values                   |')
+            print('|4- Exit                                   |')
+            print(' ------------------------------------------\n')
             user_input = str(input()).strip()
             if user_input == '1':
                 print('Please insert a path for the file OR leave a blank response for the default location which is the current one and the file must be called "list_of_ips.txt"')
@@ -72,9 +73,11 @@ class MainIterator(object):
         '''
             prints current cache
         '''
+        print('\n*****************************************')
         list_of_ips = list_of_ips if list_of_ips else self.list_of_ips
         for ip, data in list_of_ips.items():
             print('Ip %s. Current RDAP: %s. Current GEO: %s' % (ip, data.get('RDAP'), data.get('GEO') ) ) 
+        print('*****************************************')
 
 main_iterator = MainIterator()
 main_iterator.menu()
